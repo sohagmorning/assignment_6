@@ -1,110 +1,94 @@
+# FitLog
 
+FitLog is a focused workout library and daily training planner. Users can browse API-powered exercises, open a full workout detail page, add lifts to today's plan, save exercises for later, and keep track of their session from one place.
 
---- 
+## Live Project
 
-## 📅 Deadline For 60 marks: 26 September | ⏱️11:59PM
-## 📅 Deadline For 50 marks: 27 September | ⏱️11:59PM
-## 📅 Deadline for 30 marks: Any time after 27 September 2026
+- GitHub: [sohagmorning/assignment_6](https://github.com/sohagmorning/assignment_6)
+- Live demo: _Add your deployed URL here_
 
---- 
-# API's 
+## Technologies Used
 
-Fitlog Api:
-All data:
-https://api.abcz.workers.dev/api/fitlog
+- **Next.js 15** - React framework and production build system
+- **TypeScript** - typed components, API models, and safer state management
+- **React** - interactive UI and browser state
+- **Next.js App Router** - home, workout detail, my plan, loading, and 404 routes
+- **Responsive CSS** - dark fitness-focused design for mobile, tablet, and desktop
+- **Lucide React** - interface icons for actions and workout statistics
+- **FitLog REST API** - live workout data and image URLs
+- **localStorage** - persistence for today's plan and saved workouts
 
+## Key Features
 
-Details/Single Data:
-https://api.abcz.workers.dev/api/fitlog/:id
+1. **API-powered workout library**
+   Browse workout cards populated from the FitLog API. Each card includes the exercise image, muscle groups, equipment, duration, calories, and rating.
 
-# Alternative APi:
-All data:
-https://api.api-store.workers.dev/api/fitlog
+2. **Workout detail pages**
+   Every exercise has a dynamic route with a large image, description, category tags, key specifications, and step-by-step instructions.
 
-Single Data:
-https://api.api-store.workers.dev/api/fitlog/:id
+3. **Today's Plan and Saved workouts**
+   Add exercises to today's plan or save them for later. Navbar counters update instantly and data remains available after a page reload.
 
-## 🐣 Basic Requirements (Must Do for Everyone)
-- Your app must work on all screen sizes — mobile, tablet, and desktop
-- Your app must run without any errors after deployment
-- Add a nice README.md file with your project name, description, technologies used, and features(minimum 5)
+4. **Live plan metrics**
+   The My Plan page calculates total exercises, minutes, and calories from the current plan.
 
---- 
+5. **Sorting controls**
+   Sort the library, today's plan, or saved workouts by duration, calories, or rating.
 
+6. **Workout actions and feedback**
+   Mark an exercise as done, remove it, view its details, and receive toast notifications for important actions.
 
-# 🔧 Main Requirements — 50 Marks
+7. **Responsive interface**
+   The navigation, hero section, workout grid, detail layout, and plan cards adapt to desktop, tablet, and mobile screens.
 
+8. **Reliable routing states**
+   Includes loading states while data is fetched, a custom 404 page, API fallback support, and reload-safe App Router pages.
 
-### 1. 🔝 Navbar
+## API Endpoints
 
-- Design the Navbar exactly like the Figma design
-  - Saved badge = pill with outline/border only.
---- 
-- Subtitle: *"FitLog is a dark, no-nonsense gym companion: pick a lift, lock it into today's plan, and watch the week's work add up."*
-- A primary **CTA button with an icon**: **"BROWSE WORKOUTS"**.
-- A **banner/hero image** on the right side.
-- The badge numbers reflect the number of items currently in **Today's Plan** and **Saved**.( See Requirements Below)
+Primary API:
 
-- Heading: **"THE LIBRARY"** with subtitle **"Twelve lifts covering every major muscle group."**
-  - 🏷️ Category tag pills (e.g. `CHEST`, `ARMS`)
-  - 📛 Workout name (e.g. "BARBELL BENCH PRESS")
-  - 🖇️ Equipment line (e.g. "Barbell, Bench")
-  - 🔴 Stats row with icons: duration (`25 min`), calories (`180 kcal`), rating (`4.8`)
-- 🧭 Clicking a card navigates the user to that workout's **Detail Page**.
+- All workouts: `https://api.abcz.workers.dev/api/fitlog`
+- Single workout: `https://api.abcz.workers.dev/api/fitlog/:id`
 
-### 4. Workout Details Page — Layout (two-column, follow the design)
-- A large image/illustration of the workout fills the column.
-- Category tags: `Chest`, `Arms`
-- **Key Specs table/panel** with label + value rows:
-- **INSTRUCTIONS** section: ordered list of 4 steps (number + text)
-- **Call-to-action buttons:**
-  - Primary button: **"Add to today's plan"** (with icon)
+Fallback API:
 
-### 5. Details Page — Button Functionality
-- Clicking **"Add to today's plan"**:
-  - Increments the "Plan" badge counter in the navbar.
-  - Shows a **toast notification** (e.g. "Added to today's plan").
-- Clicking **"Save for later"**:
-  - Increments the "Saved" badge counter in the navbar.
-  - Shows a **toast notification**.
-- On the **My Plan** page, each planned workout card has:
-- **Tabs**: `Today's Plan` / `Saved` (active tab highlighted).
+- All workouts: `https://api.api-store.workers.dev/api/fitlog`
+- Single workout: `https://api.api-store.workers.dev/api/fitlog/:id`
 
-- **Left**: brand logo icon + **FITLOG**.
---- 
+## Run Locally
 
-#	Requirement
-- Add a 404 Page for any unknown/invalid route
-- Show a relevant toast notification when the detail's page button.
-- Make sure reloading any page after deployment does not cause an error
+```bash
+npm install
+npm run dev
+```
 
---- 
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-# Challenge Requirements — 10 Marks
+## Production Build
 
-### C1. - **Sort dropdown**: 
-- Add a well-designed `README.md` that includes:
-  - Project name
+```bash
+npm run build
+npm start
+```
 
-### C3. - On the **My Plan** page, each planned workout card has:
-  - **"Mark as Done"** button (with check icon) → marks the workout done, shows a toast.
-  - **Remove (X)** button → removes the workout, shows a toast.
+## Main Routes
 
-## Optional (No Marks — Highly Recommended)
-- Persist the plan/saved data in `localStorage` so it survives a page reload.
-- Search the My Plan / library entries by workout name or tag.
-- Disable "Add to today's plan" when the plan already contains 5 lifts (the cap mentioned in the subtitle).
-### 🛠️ Technologies to Use
-Technology	Purpose
-- Next.js	Build the UI
-- App router(Next.js) +	Handle page navigation
-- Tailwind CSS + Any component library	Styling and responsiveness
+- `/` - workout library and hero section
+- `/workout/:id` - workout detail page
+- `/my-plan` - today's plan and saved workouts
+- Unknown routes - custom 404 page
 
-### 🚀 Deployment
-Deploy your project on Vercel, Netlify, Cloudflare Pages, or anywhere else before submitting.
+## Project Structure
 
-## 📬 Submission
-Fill in both links before submitting:
+```text
+app/          App Router pages, loading state, 404 page, and global styles
+components/   Navigation, provider, workout cards, and action components
+lib/           API client and TypeScript workout model
+public/        Logo and banner assets
+```
 
-- Live Link:
-- GitHub Repository Link:
+## Submission
+
+- GitHub repository: https://github.com/sohagmorning/assignment_6
+- Live link: _Add your deployed URL here_
