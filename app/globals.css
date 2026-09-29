@@ -26,7 +26,7 @@ button, select { font: inherit; }
 h1, h2, h3, p { margin: 0; }
 h1, h2, h3 { font-family: 'Barlow Condensed', sans-serif; text-transform: uppercase; letter-spacing: .015em; }
 h1 { font-size: clamp(54px, 7.4vw, 100px); line-height: .88; margin: 22px 0 26px; max-width: 690px; }
-.hero-copy { color: #a9b0ab; line-height: 1.75; max-width: 530px; font-size: 13px; }
+.hero-copy { color: #dadada; line-height: 1.75; max-width: 530px; font-size: 13px; }
 .button { display: inline-flex; align-items: center; justify-content: center; gap: 10px; border: 0; cursor: pointer; padding: 14px 18px; text-transform: uppercase; font-size: 11px; letter-spacing: .08em; transition: transform .2s, background .2s; }
 .button:hover { transform: translateY(-2px); }
 .button.primary { background: var(--lime); color: var(--ink); }
