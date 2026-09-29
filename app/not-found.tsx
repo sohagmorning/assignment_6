@@ -1,0 +1,2 @@
+import Link from "next/link";
+export default function NotFound() { return <main className="plan-page"><div className="container empty"><p className="eyebrow">404 / Lost rep</p><h3>Route not found</h3><p>This page isn&apos;t part of the current training split.</p><Link className="button primary" href="/">Back to workouts</Link></div></main>; }

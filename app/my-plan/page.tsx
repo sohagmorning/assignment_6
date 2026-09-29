@@ -1,0 +1,15 @@
+"use client";
+import Link from "next/link";
+import Image from "next/image";
+import { Check, Clock3, Flame, Star, X } from "lucide-react";
+import { useState } from "react";
+import { AppShell } from "@/components/AppShell";
+import { useFitLog } from "@/components/FitLogProvider";
+import { Workout } from "@/lib/types";
+
+function PlanCard({ workout, saved }: { workout: Workout; saved: boolean }) {
+  const { removeFromPlan, removeSaved, showToast } = useFitLog();
+  return <article className="plan-card"><Image src={workout.image} alt={workout.name} width={160} height={120} unoptimized /><div><h3>{workout.name}</h3><p className="equipment">{workout.equipment}</p><div className="stats"><span><Clock3 /> {workout.duration} min</span><span><Flame /> {workout.caloriesBurned} kcal</span><span><Star /> {workout.rating}</span></div></div><div className="plan-actions"><Link className="button secondary small-button" href={`/workout/${workout.id}`}>View details</Link>{saved ? <button className="button secondary small-button" onClick={() => removeSaved(workout.id)}><X size={14} /> Remove</button> : <><button className="button primary small-button" onClick={() => showToast(`${workout.name} marked as done`)}><Check size={14} /> Mark as done</button><button className="button secondary small-button" onClick={() => removeFromPlan(workout.id)}><X size={14} /> Remove</button></>}</div></article>;
+}
+
+export default function MyPlanPage() { const { plan, saved } = useFitLog(); const [tab, setTab] = useState<"plan" | "saved">("plan"); const items = tab === "plan" ? plan : saved; const minutes = plan.reduce((sum, item) => sum + item.duration, 0); const calories = plan.reduce((sum, item) => sum + item.caloriesBurned, 0); return <AppShell><main className="plan-page"><div className="container"><div className="page-intro"><div><p className="eyebrow">02 / Daily log</p><h1 className="page-title">My plan</h1><p className="section-sub">Cap of five lifts for today. Finish them, then load more.</p></div></div><div className="metrics"><div className="metric"><strong>{plan.length}</strong><span>Exercises</span></div><div className="metric"><strong>{minutes}</strong><span>Minutes</span></div><div className="metric"><strong>{calories}</strong><span>Calories</span></div></div><div className="tabs"><button className={`tab ${tab === "plan" ? "active" : ""}`} onClick={() => setTab("plan")}>Today&apos;s plan ({plan.length})</button><button className={`tab ${tab === "saved" ? "active" : ""}`} onClick={() => setTab("saved")}>Saved ({saved.length})</button></div>{items.length ? <div className="plan-list">{items.map((workout: Workout) => <PlanCard key={workout.id} workout={workout} saved={tab === "saved"} />)}</div> : <div className="empty"><h3>Nothing here yet</h3><p>Browse the library and add a lift to get today moving.</p><Link className="button primary" href="/">Go to workouts</Link></div>}</div></main></AppShell>; }
